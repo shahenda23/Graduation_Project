@@ -8,65 +8,49 @@ namespace Graduation_Project.Models;
 
 public partial class FINAL_TRANSECT
 {
-    public int objectid { get; set; }
+    public int OBJECTID { get; set; }
 
-    public int? join_count { get; set; }
+    public Geometry Shape { get; set; }
 
-    public int? target_fid { get; set; }
+    public decimal? TransectId { get; set; }
 
-    public decimal? objectid_1 { get; set; }
+    public decimal? ShrCount { get; set; }
 
-    public decimal? baselineid { get; set; }
+    public decimal? LRR { get; set; }
 
-    public decimal? transorder { get; set; }
+    public decimal? LR2 { get; set; }
 
-    public decimal? transedit { get; set; }
+    public decimal? LCI { get; set; }
 
-    public decimal? transectid { get; set; }
+    public decimal? LSE { get; set; }
 
-    public decimal? shrcount { get; set; }
+    public decimal? EPR { get; set; }
 
-    public decimal? lrr { get; set; }
+    public decimal? EPRunc { get; set; }
 
-    public decimal? lr2 { get; set; }
+    public decimal? NSM { get; set; }
 
-    public decimal? lci { get; set; }
+    public decimal? SCE { get; set; }
 
-    public decimal? lse { get; set; }
+    public decimal? WLR { get; set; }
 
-    public decimal? epr { get; set; }
+    public decimal? WR2 { get; set; }
 
-    public decimal? eprunc { get; set; }
+    public decimal? WCI { get; set; }
 
-    public decimal? nsm { get; set; }
+    public decimal? WSE { get; set; }
 
-    public decimal? sce { get; set; }
+    public decimal? TCD { get; set; }
 
-    public decimal? wlr { get; set; }
+    public short? UNCERTAINTY { get; set; }
 
-    public decimal? wr2 { get; set; }
+    public decimal? Shape_Length_1 { get; set; }
 
-    public decimal? wci { get; set; }
+    public decimal? Dt_To_Shoreline_2007 { get; set; }
 
-    public decimal? wse { get; set; }
+    public decimal? Dt_To_Shoreline_2013 { get; set; }
 
-    public decimal? tcd { get; set; }
+    public decimal? Dt_To_Shoreline_2018 { get; set; }
 
-    public decimal? distancetobase2007 { get; set; }
-
-    public short? uncertainty { get; set; }
-
-    public string date_ { get; set; }
-
-    public decimal? shape_length_1 { get; set; }
-
-    public decimal? dt_to_shoreline_2007 { get; set; }
-
-    public decimal? dt_to_shoreline_2013 { get; set; }
-
-    public decimal? dt_to_shoreline_2018 { get; set; }
-
-    public decimal? dt_to_shoreline_2023 { get; set; }
-
-    public Geometry shape { get; set; }
+    public decimal? Dt_To_Shoreline_2023 { get; set; }
 }

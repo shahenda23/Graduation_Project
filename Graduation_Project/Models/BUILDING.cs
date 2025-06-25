@@ -12,8 +12,6 @@ public partial class BUILDING
 
     public Geometry Shape { get; set; }
 
-    public decimal? OSM_ID { get; set; }
-
     public string BLDG_TYPE { get; set; }
 
     public string BLDG_USE { get; set; }
@@ -30,15 +28,7 @@ public partial class BUILDING
 
     public string NAME { get; set; }
 
-    public string ROOF_MAT { get; set; }
-
     public string STATUS { get; set; }
-
-    public string DATA_SRC { get; set; }
-
-    public string EXTRACT_DT { get; set; }
-
-    public decimal? AREA_M2 { get; set; }
 
     public decimal? PERIM_M { get; set; }
 
@@ -57,10 +47,4 @@ public partial class BUILDING
     public string DIST_COAST { get; set; }
 
     public string ELEVATION { get; set; }
-
-    public string RISK_2030 { get; set; }
-
-    public string RISK_2050 { get; set; }
-
-    public string RISK_2100 { get; set; }
 }
