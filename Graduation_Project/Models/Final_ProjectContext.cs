@@ -22,19 +22,11 @@ public partial class Final_ProjectContext : DbContext
 
     public virtual DbSet<SHORELINE_1986_2023__PROJECT> SHORELINE_1986_2023__PROJECTs { get; set; }
 
-    public virtual DbSet<SHORELINE_1986_POINTS_100M> SHORELINE_1986_POINTS_100Ms { get; set; }
-
     public virtual DbSet<SHORELINE_1986_SEGMENTED_PROJECT> SHORELINE_1986_SEGMENTED_PROJECTs { get; set; }
-
-    public virtual DbSet<SHORELINE_2007_POINTS_100M> SHORELINE_2007_POINTS_100Ms { get; set; }
 
     public virtual DbSet<SHORELINE_2007_SEGMENTED_PROJECT> SHORELINE_2007_SEGMENTED_PROJECTs { get; set; }
 
-    public virtual DbSet<SHORELINE_2013_POINTS_100M> SHORELINE_2013_POINTS_100Ms { get; set; }
-
     public virtual DbSet<SHORELINE_2013_SEGMENTED_PROJECT> SHORELINE_2013_SEGMENTED_PROJECTs { get; set; }
-
-    public virtual DbSet<SHORELINE_2018_POINTS_100M> SHORELINE_2018_POINTS_100Ms { get; set; }
 
     public virtual DbSet<SHORELINE_2018_SEGMENTED_PROJECT> SHORELINE_2018_SEGMENTED_PROJECTs { get; set; }
 
@@ -42,15 +34,9 @@ public partial class Final_ProjectContext : DbContext
 
     public virtual DbSet<SHORELINE_2023_CVI_1KM> SHORELINE_2023_CVI_1KMs { get; set; }
 
-    public virtual DbSet<SHORELINE_2023_POINTS_100M> SHORELINE_2023_POINTS_100Ms { get; set; }
-
-    public virtual DbSet<SHORELINE_2023_POINTS_250M> SHORELINE_2023_POINTS_250Ms { get; set; }
-
     public virtual DbSet<SHORELINE_2023_SEGMENTED_PROJECT> SHORELINE_2023_SEGMENTED_PROJECTs { get; set; }
 
     public virtual DbSet<SHORELINE_2023_SEGMEN_BUFFER> SHORELINE_2023_SEGMEN_BUFFERs { get; set; }
-
-    public virtual DbSet<SHORELINE_BASELINE> SHORELINE_BASELINEs { get; set; }
 
     public virtual DbSet<SHORELINE_RATES_SEGMENTED_CLOSEST> SHORELINE_RATES_SEGMENTED_CLOSESTs { get; set; }
 
@@ -129,22 +115,6 @@ public partial class Final_ProjectContext : DbContext
             entity.Property(e => e.shape).HasColumnType("geometry");
         });
 
-        modelBuilder.Entity<SHORELINE_1986_POINTS_100M>(entity =>
-        {
-            entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E6321E0FE271");
-
-            entity.ToTable("SHORELINE_1986_POINTS_100M");
-
-            entity.HasIndex(e => e.shape, "FDO_shape");
-
-            entity.Property(e => e._base)
-                .HasColumnType("numeric(38, 8)")
-                .HasColumnName("base");
-            entity.Property(e => e.folderpath).HasMaxLength(320);
-            entity.Property(e => e.name).HasMaxLength(320);
-            entity.Property(e => e.shape).HasColumnType("geometry");
-        });
-
         modelBuilder.Entity<SHORELINE_1986_SEGMENTED_PROJECT>(entity =>
         {
             entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E63201F0D9DF");
@@ -161,21 +131,6 @@ public partial class Final_ProjectContext : DbContext
             entity.Property(e => e.shape).HasColumnType("geometry");
         });
 
-        modelBuilder.Entity<SHORELINE_2007_POINTS_100M>(entity =>
-        {
-            entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E632FA102A4A");
-
-            entity.ToTable("SHORELINE_2007_POINTS_100M");
-
-            entity.HasIndex(e => e.shape, "FDO_shape");
-
-            entity.Property(e => e._base)
-                .HasColumnType("numeric(38, 8)")
-                .HasColumnName("base");
-            entity.Property(e => e.folderpath).HasMaxLength(320);
-            entity.Property(e => e.name).HasMaxLength(320);
-            entity.Property(e => e.shape).HasColumnType("geometry");
-        });
 
         modelBuilder.Entity<SHORELINE_2007_SEGMENTED_PROJECT>(entity =>
         {
@@ -189,22 +144,6 @@ public partial class Final_ProjectContext : DbContext
             entity.Property(e => e.shape).HasColumnType("geometry");
         });
 
-        modelBuilder.Entity<SHORELINE_2013_POINTS_100M>(entity =>
-        {
-            entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E6325B8CDE74");
-
-            entity.ToTable("SHORELINE_2013_POINTS_100M");
-
-            entity.HasIndex(e => e.shape, "FDO_shape");
-
-            entity.Property(e => e._base)
-                .HasColumnType("numeric(38, 8)")
-                .HasColumnName("base");
-            entity.Property(e => e.folderpath).HasMaxLength(320);
-            entity.Property(e => e.name).HasMaxLength(320);
-            entity.Property(e => e.shape).HasColumnType("geometry");
-        });
-
         modelBuilder.Entity<SHORELINE_2013_SEGMENTED_PROJECT>(entity =>
         {
             entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E6323116B3B0");
@@ -214,22 +153,6 @@ public partial class Final_ProjectContext : DbContext
             entity.HasIndex(e => e.shape, "FDO_shape");
 
             entity.Property(e => e.date_).HasMaxLength(255);
-            entity.Property(e => e.shape).HasColumnType("geometry");
-        });
-
-        modelBuilder.Entity<SHORELINE_2018_POINTS_100M>(entity =>
-        {
-            entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E632AE009232");
-
-            entity.ToTable("SHORELINE_2018_POINTS_100M");
-
-            entity.HasIndex(e => e.shape, "FDO_shape");
-
-            entity.Property(e => e._base)
-                .HasColumnType("numeric(38, 8)")
-                .HasColumnName("base");
-            entity.Property(e => e.folderpath).HasMaxLength(320);
-            entity.Property(e => e.name).HasMaxLength(320);
             entity.Property(e => e.shape).HasColumnType("geometry");
         });
 
@@ -271,51 +194,6 @@ public partial class Final_ProjectContext : DbContext
             entity.Property(e => e.shape).HasColumnType("geometry");
         });
 
-        modelBuilder.Entity<SHORELINE_2023_POINTS_100M>(entity =>
-        {
-            entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E632546A9592");
-
-            entity.ToTable("SHORELINE_2023_POINTS_100M");
-
-            entity.HasIndex(e => e.shape, "FDO_shape");
-
-            entity.Property(e => e.coastal_slope).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.current_position_x).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.current_position_y).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.elevation).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.lrr).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.nsm).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2030_x).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2030_y).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2035_x).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2035_y).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2040_x).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2040_y).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2045_x).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2045_y).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2050_x).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2050_y).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2100_x).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.position_2100_y).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.sea_level_rise_trend_mm_year).HasColumnType("numeric(38, 8)");
-            entity.Property(e => e.shape).HasColumnType("geometry");
-        });
-
-        modelBuilder.Entity<SHORELINE_2023_POINTS_250M>(entity =>
-        {
-            entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E6320ACE28B5");
-
-            entity.ToTable("SHORELINE_2023_POINTS_250M");
-
-            entity.HasIndex(e => e.shape, "FDO_shape");
-
-            entity.Property(e => e._base)
-                .HasColumnType("numeric(38, 8)")
-                .HasColumnName("base");
-            entity.Property(e => e.folderpath).HasMaxLength(255);
-            entity.Property(e => e.name).HasMaxLength(255);
-            entity.Property(e => e.shape).HasColumnType("geometry");
-        });
 
         modelBuilder.Entity<SHORELINE_2023_SEGMENTED_PROJECT>(entity =>
         {
@@ -339,18 +217,6 @@ public partial class Final_ProjectContext : DbContext
 
             entity.Property(e => e.BUFF_DIST).HasColumnType("numeric(38, 8)");
             entity.Property(e => e.Shape).HasColumnType("geometry");
-        });
-
-        modelBuilder.Entity<SHORELINE_BASELINE>(entity =>
-        {
-            entity.HasKey(e => e.objectid).HasName("PK__SHORELIN__5242E63231AE9FAC");
-
-            entity.ToTable("SHORELINE_BASELINE");
-
-            entity.HasIndex(e => e.shape, "FDO_shape");
-
-            entity.Property(e => e.shape).HasColumnType("geometry");
-            entity.Property(e => e.shape_length1).HasColumnType("numeric(38, 8)");
         });
 
         modelBuilder.Entity<SHORELINE_RATES_SEGMENTED_CLOSEST>(entity =>
