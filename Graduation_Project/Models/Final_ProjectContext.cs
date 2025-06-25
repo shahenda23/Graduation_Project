@@ -14,6 +14,9 @@ public partial class Final_ProjectContext : DbContext
     }
 
     public virtual DbSet<BUILDING> BUILDINGs { get; set; }
+    public virtual DbSet<Account> Accounts { get; set; }
+    public virtual DbSet<Role> Roles { get; set; }
+    public virtual DbSet<UserLocation> UserLocations { get; set; }
 
     public virtual DbSet<FINAL_TRANSECT> FINAL_TRANSECTs { get; set; }
 
