@@ -1,114 +1,105 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿//using Microsoft.AspNetCore.Mvc;
+//using NetTopologySuite.Geometries;
+//using NetTopologySuite.IO;
+//using NetTopologySuite.Features;
+//using NetTopologySuite.Operation.Buffer;
+//using NetTopologySuite.Geometries.Prepared;
+//using System.IO;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using Graduation_Project.Models.DTO;
+
+
 using Microsoft.AspNetCore.Mvc;
-using NetTopologySuite.Geometries;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using Graduation_Project.Models;
-using NetTopologySuite.IO;
-using System.IO;
-using System.Linq;
-using System;
 
 namespace Graduation_Project.Controllers
 {
-   
-        [ApiController]
-        [Route("api/[controller]")]
-        public class BuildingsRiskController : ControllerBase
+    [ApiController]
+    [Route("api/BuildingsRisk")]
+    public class BuildingsRiskController : ControllerBase
+    {
+        private readonly IConfiguration _config;
+        public BuildingsRiskController(IConfiguration config)
         {
-            private readonly Final_ProjectContext _dbContext;
-
-          
-            public BuildingsRiskController(Final_ProjectContext dbContext)
-            {
-                _dbContext = dbContext;
-            }
-
-            [HttpGet]
-            public async Task<IActionResult> GetBuildingsRisk([FromQuery] int year, [FromQuery] double lrr, [FromQuery] double nsm, [FromQuery] double slope, [FromQuery] double elevation)
-            {
-            // 1️⃣ Build path to shoreline GeoJSON
-            // 1️⃣ Call Python Flask API
+            _config = config;
+        }
+        [HttpGet("assess/{year}")]
+        public async Task<IActionResult> AssessBuildingsRisk(int year)
+        {
             using var client = new HttpClient();
-
-            // 👇 Replace with your actual Flask server URL
-            string flaskUrl = "http://localhost:5000/predict";
-
-            var payload = new
-            {
-                Year = year,
-                LRR = lrr,
-                NSM = nsm,
-                Slope = slope,
-                Elevation = elevation
-            };
-
-            // Send POST request
-            var response = await client.PostAsJsonAsync(flaskUrl, payload);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                return BadRequest($"Python model returned error: {response.StatusCode}");
-            }
-
-            // Get predicted shoreline GeoJSON as string
-            string geoJson = await response.Content.ReadAsStringAsync();
-            var reader = new GeoJsonReader();
-            Geometry shoreline;
-
+            var pythonServiceUrl = _config.GetValue<string>("PythonServiceUrl", "\"http://localhost:5001\"");
             try
             {
-                shoreline = reader.Read<Geometry>(geoJson);
-                if (shoreline == null)
-                {
-                    return BadRequest("Invalid shoreline geometry returned from Python.");
-                }
+                var response = await client.GetAsync($"{pythonServiceUrl}/assess_risk/{year}");
+                if (!response.IsSuccessStatusCode)
+                    return NotFound($"Risk assessment for {year} failed.");
+
+                var content = await response.Content.ReadAsStringAsync();
+                return Content(content, "application/json");
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest("Failed to parse GeoJSON from Python API.");
-            }
-
-
-            // 3️⃣ Create buffers: High (0-50m), Medium (50-150m), Low (150-300m)
-            var highBuffer = shoreline.Buffer(50);
-                var medBuffer = shoreline.Buffer(150).Difference(highBuffer);
-                var lowBuffer = shoreline.Buffer(300).Difference(medBuffer.Union(highBuffer));
-
-                // 4️⃣ Load all buildings
-                var buildings = _dbContext.BUILDINGs.ToList();
-
-                // 5️⃣ For each building, check risk level
-                var result = buildings.Select(b =>
-                {
-                    string risk = "None";
-
-                    if (highBuffer.Intersects(b.Shape))
-                    {
-                        risk = "High";
-                    }
-                    else if (medBuffer.Intersects(b.Shape))
-                    {
-                        risk = "Medium";
-                    }
-                    else if (lowBuffer.Intersects(b.Shape))
-                    {
-                        risk = "Low";
-                    }
-
-                    return new
-                    {
-                        id = b.OBJECTID,
-                        riskLevel = risk,
-                        geometry = b.Shape.AsText() // Or convert to GeoJSON if you want
-                    };
-                });
-
-                // 6️⃣ Return risk-tagged buildings to frontend
-                return Ok(result);
+                return StatusCode(500, $"Error contacting Python service: {ex.Message}");
             }
         }
+        //        /// <summary>
+        //        /// POST /api/BuildingsRisk/assess
+        //        /// body: { year: 2043, bufferDistance: 50 }
+        //        /// </summary>
+        //        [HttpPost("assess")]
+        //        public async Task<IActionResult> AssessRisk([FromBody] RiskRequestDto request)
+        //        {
+        //            // === 1️⃣ Load predicted shoreline GeoJSON ===
+        //            string predictedPath = Path.Combine("Predicted", $"predicted_shoreline_{request.Year}.geojson");
+        //            if (!System.IO.File.Exists(predictedPath))
+        //                return NotFound($"Predicted shoreline for year {request.Year} not found.");
 
-    
+        //            var reader = new GeoJsonReader();
+        //            FeatureCollection shorelineFeatures;
+        //            using (var sr = new StreamReader(predictedPath))
+        //            {
+        //                shorelineFeatures = reader.Read<FeatureCollection>(sr.ReadToEnd());
+        //            }
+
+        //            // === 2️⃣ Buffer each point ===
+        //            var bufferedGeometries = shorelineFeatures
+        //                .Select(f => f.Geometry)
+        //                .Select(g => g.Buffer(request.BufferDistance))
+        //                .ToList();
+
+        //            var bufferUnion = bufferedGeometries[0];
+        //            for (int i = 1; i < bufferedGeometries.Count; i++)
+        //            {
+        //                bufferUnion = bufferUnion.Union(bufferedGeometries[i]);
+        //            }
+
+        //            // === 3️⃣ Load buildings layer (GeoJSON or DB) ===
+        //            string buildingsPath = Path.Combine("Data", "buildings.geojson");
+        //            if (!System.IO.File.Exists(buildingsPath))
+        //                return NotFound("Buildings data not found.");
+
+        //            FeatureCollection buildingFeatures;
+        //            using (var sr = new StreamReader(buildingsPath))
+        //            {
+        //                buildingFeatures = reader.Read<FeatureCollection>(sr.ReadToEnd());
+        //            }
+
+        //            // === 4️⃣ Intersect buildings with buffer ===
+        //            var riskyBuildings = new FeatureCollection();
+        //            foreach (var building in buildingFeatures)
+        //            {
+        //                if (bufferUnion.Intersects(building.Geometry))
+        //                {
+        //                    riskyBuildings.Add(building);
+        //                }
+        //            }
+
+        //            // === 5️⃣ Return intersected buildings as GeoJSON ===
+        //            var writer = new GeoJsonWriter();
+        //            string geoJsonResult = writer.Write(riskyBuildings);
+        //            return Content(geoJsonResult, "application/json");
+        //        }
+    }
 }
+

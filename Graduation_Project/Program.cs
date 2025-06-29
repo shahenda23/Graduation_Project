@@ -1,6 +1,9 @@
 
 using Graduation_Project.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Graduation_Project
 {
@@ -26,6 +29,7 @@ namespace Graduation_Project
                     options.UseSqlServer(
                     builder.Configuration.GetConnectionString("cs"),
                     x => x.UseNetTopologySuite()));
+            builder.Services.AddHttpClient(); // Required for HttpClient in your controller
 
             var app = builder.Build();
 
@@ -35,7 +39,7 @@ namespace Graduation_Project
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseHttpsRedirection();
             app.UseAuthorization();
 
 
