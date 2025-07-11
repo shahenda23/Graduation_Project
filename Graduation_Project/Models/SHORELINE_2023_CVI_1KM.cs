@@ -8,25 +8,25 @@ namespace Graduation_Project.Models;
 
 public partial class SHORELINE_2023_CVI_1KM
 {
-    public int OBJECTID { get; set; }
+    public int objectid { get; set; }
 
-    public Geometry Shape { get; set; }
+    public int? orig_seq { get; set; }
 
-    public int? ORIG_SEQ { get; set; }
+    public short? slope_rank { get; set; }
 
-    public short? Slope_Rank { get; set; }
+    public short? lrr_erosion_rank { get; set; }
 
-    public short? LRR_Erosion_Rank { get; set; }
+    public short? epr_rank { get; set; }
 
-    public short? EPR_Rank { get; set; }
+    public string epr_category { get; set; }
 
-    public string EPR_Category { get; set; }
+    public short? tidal_rank { get; set; }
 
-    public short? Tidal_Rank { get; set; }
+    public short? wave_height_rank { get; set; }
 
-    public short? Wave_Height_Rank { get; set; }
+    public short? cvi_rank { get; set; }
 
-    public short? CVI_Rank { get; set; }
+    public string cvi_classify { get; set; }
 
-    public string CVI_Classify { get; set; }
+    public Geometry shape { get; set; }
 }

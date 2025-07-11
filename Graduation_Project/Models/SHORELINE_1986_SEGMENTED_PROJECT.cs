@@ -8,19 +8,19 @@ namespace Graduation_Project.Models;
 
 public partial class SHORELINE_1986_SEGMENTED_PROJECT
 {
-    public int OBJECTID { get; set; }
+    public int objectid { get; set; }
 
-    public Geometry Shape { get; set; }
+    public short? uncertainty { get; set; }
 
-    public short? UNCERTAINTY { get; set; }
+    public string date_ { get; set; }
 
-    public string DATE_ { get; set; }
+    public decimal? dt_to_shoreline_2007 { get; set; }
 
-    public decimal? Dt_To_Shoreline_2007 { get; set; }
+    public decimal? dt_to_shoreline_2013 { get; set; }
 
-    public decimal? Dt_To_Shoreline_2013 { get; set; }
+    public decimal? dt_to_shoreline_2018 { get; set; }
 
-    public decimal? Dt_To_Shoreline_2018 { get; set; }
+    public decimal? dt_to_shoreline_2023 { get; set; }
 
-    public decimal? Dt_To_Shoreline_2023 { get; set; }
+    public Geometry shape { get; set; }
 }

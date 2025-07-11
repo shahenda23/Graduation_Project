@@ -8,11 +8,11 @@ namespace Graduation_Project.Models;
 
 public partial class SHORELINE_2013_SEGMENTED_PROJECT
 {
-    public int OBJECTID { get; set; }
+    public int objectid { get; set; }
 
-    public Geometry Shape { get; set; }
+    public string date_ { get; set; }
 
-    public string DATE_ { get; set; }
+    public short? uncertainty { get; set; }
 
-    public short? UNCERTAINTY { get; set; }
+    public Geometry shape { get; set; }
 }

@@ -15,7 +15,7 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "Name": "[dbo].[ALEX_BUILDINGS]",
+         "Name": "[dbo].[BUILDINGS]",
          "ObjectType": 0
       },
       {
@@ -27,23 +27,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[SHORELINE_1986_2023__PROJECT_FINAL]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SHORELINE_1986_2023_FINAL]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[SHORELINE_1986_POINTS_100M]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SHORELINE_1986_PROJECT]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SHORELINE_1986_SEGMENTED_100M]",
          "ObjectType": 0
       },
       {
@@ -51,15 +35,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[SHORELINE_1986_SPLIT_PROJECT]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[SHORELINE_2007_POINTS_100M]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SHORELINE_2007_SEGMENTED_100M]",
          "ObjectType": 0
       },
       {
@@ -71,19 +47,11 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[SHORELINE_2013_SEGMENTED_100M]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[SHORELINE_2013_SEGMENTED_PROJECT]",
          "ObjectType": 0
       },
       {
          "Name": "[dbo].[SHORELINE_2018_POINTS_100M]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SHORELINE_2018_SEGMENTED_100M]",
          "ObjectType": 0
       },
       {
@@ -111,10 +79,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[SHORELINE_2023_SEGMENTED_100M]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[SHORELINE_2023_SEGMENTED_PROJECT]",
          "ObjectType": 0
       },
@@ -124,14 +88,6 @@
       },
       {
          "Name": "[dbo].[SHORELINE_RATES_SEGMENTED_CLOSEST]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SHORELINES_1986_2023]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[SHORELINES_1986_2100]",
          "ObjectType": 0
       }
    ],

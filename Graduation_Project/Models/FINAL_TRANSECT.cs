@@ -12,18 +12,6 @@ public partial class FINAL_TRANSECT
 
     public Geometry Shape { get; set; }
 
-    public int? Join_Count { get; set; }
-
-    public int? TARGET_FID { get; set; }
-
-    public decimal? ObjectID_1 { get; set; }
-
-    public decimal? BaselineID { get; set; }
-
-    public decimal? TransOrder { get; set; }
-
-    public decimal? TransEdit { get; set; }
-
     public decimal? TransectId { get; set; }
 
     public decimal? ShrCount { get; set; }
@@ -54,11 +42,7 @@ public partial class FINAL_TRANSECT
 
     public decimal? TCD { get; set; }
 
-    public decimal? DistanceToBase2007 { get; set; }
-
     public short? UNCERTAINTY { get; set; }
-
-    public string DATE_ { get; set; }
 
     public decimal? Shape_Length_1 { get; set; }
 

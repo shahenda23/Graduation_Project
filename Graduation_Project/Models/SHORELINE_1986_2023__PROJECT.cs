@@ -8,13 +8,13 @@ namespace Graduation_Project.Models;
 
 public partial class SHORELINE_1986_2023__PROJECT
 {
-    public int OBJECTID { get; set; }
+    public int objectid { get; set; }
 
-    public Geometry Shape { get; set; }
+    public short? uncertainty { get; set; }
 
-    public short? UNCERTAINTY { get; set; }
+    public string date_ { get; set; }
 
-    public string DATE_ { get; set; }
+    public string merge_src { get; set; }
 
-    public string MERGE_SRC { get; set; }
+    public Geometry shape { get; set; }
 }
